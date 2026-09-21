@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Для тебя ♥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+    <main class="scene">
+      <section class="ask" id="ask-screen">
+        <p class="ask__brand">для тебя</p>
+        <h1 class="ask__title">
+          Хочешь, покажу, как мы познакомились и что вместе пережили?
+        </h1>
+        <p class="ask__hint">Выбери сердцем — я уже знаю ответ.</p>
+
+        <div class="ask__actions">
+          <button type="button" class="btn btn--yes" id="yes-btn">
+            Да, хочу
+          </button>
+          <span class="no-home" id="no-home">
+            <button type="button" class="btn btn--no" id="no-btn">Нет</button>
+          </span>
+        </div>
+      </section>
+
+      <section class="story" id="story-screen" hidden>
+        <p class="story__brand">для тебя</p>
+        <h2 class="story__title">Скоро здесь будет наша история…</h2>
+        <p class="story__text">
+          Пока это заглушка — расскажи, что должно происходить дальше, и я всё
+          доделаю.
+        </p>
+        <button type="button" class="btn btn--yes" id="back-btn">
+          Вернуться
+        </button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,235 @@
+:root {
+  --blush: #ff8fb8;
+  --rose: #ff5c9a;
+  --deep-rose: #e83a7a;
+  --petal: #ffe0ec;
+  --cream-pink: #fff5f8;
+  --ink: #5a1f35;
+  --soft-ink: #8a4560;
+  --yes: #ff4d88;
+  --yes-glow: rgba(255, 77, 136, 0.35);
+  --no: #ffb3cc;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, #ffd6e7 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 20%, #ffc2d9 0%, transparent 50%),
+    radial-gradient(ellipse 60% 45% at 50% 100%, #ff9ec0 0%, transparent 55%),
+    linear-gradient(165deg, #fff0f5 0%, #ffd9e8 45%, #ffc4da 100%);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  color: var(--rose);
+  opacity: 0.22;
+  animation: float-up linear infinite;
+  user-select: none;
+  filter: drop-shadow(0 0 6px rgba(255, 92, 154, 0.25));
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.28;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(28deg) scale(1.15);
+    opacity: 0;
+  }
+}
+
+.scene {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.ask,
+.story {
+  width: min(560px, 100%);
+  text-align: center;
+  animation: rise-in 0.7s ease both;
+}
+
+/* No transform here — it breaks position:fixed for the fleeing button. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ask__brand,
+.story__brand {
+  font-family: "Caveat", cursive;
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
+  font-weight: 600;
+  color: var(--deep-rose);
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  animation: soft-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+.ask__title,
+.story__title {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 4.2vw, 1.85rem);
+  line-height: 1.35;
+  margin: 0 0 0.85rem;
+  color: var(--ink);
+}
+
+.ask__hint,
+.story__text {
+  margin: 0 auto 1.75rem;
+  max-width: 28rem;
+  color: var(--soft-ink);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.ask__actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 3.5rem;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 650;
+  font-size: 1rem;
+  padding: 0.85rem 1.55rem;
+  border-radius: 999px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn--yes {
+  background: linear-gradient(135deg, var(--yes), var(--deep-rose));
+  color: #fff;
+  box-shadow: 0 10px 28px var(--yes-glow);
+}
+
+.btn--yes:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 34px var(--yes-glow);
+}
+
+.btn--yes:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.no-home {
+  display: inline-flex;
+}
+
+.btn--no {
+  position: relative;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--soft-ink);
+  border: 1.5px solid rgba(232, 58, 122, 0.28);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(232, 58, 122, 0.12);
+  white-space: nowrap;
+}
+
+.btn--no.is-fleeing {
+  position: fixed;
+  z-index: 1000;
+  margin: 0;
+  max-width: calc(100vw - 24px);
+  /* Instant jump — animated left/top slides under the cursor and "flies away". */
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn--no:hover,
+.btn--no:focus-visible {
+  background: #fff;
+  color: var(--deep-rose);
+}
+
+.story[hidden],
+.ask[hidden] {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .ask__actions {
+    min-height: 4.5rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.8rem 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart,
+  .ask__brand,
+  .story__brand,
+  .ask,
+  .story {
+    animation: none;
+  }
+
+  .btn--no.is-fleeing {
+    transition: none;
+  }
+}
