@@ -33,15 +33,41 @@
         </div>
       </section>
 
-      <section class="story" id="story-screen" hidden>
-        <p class="story__brand">для тебя</p>
-        <h2 class="story__title">Скоро здесь будет наша история…</h2>
-        <p class="story__text">
-          Пока это заглушка — расскажи, что должно происходить дальше, и я всё
-          доделаю.
+      <section class="book-screen" id="book-screen" hidden>
+        <p class="book-screen__brand">для тебя</p>
+        <p class="book-screen__hint" id="book-hint">
+          Тяни страницу или кликай по краям, чтобы листать
         </p>
-        <button type="button" class="btn btn--yes" id="back-btn">
-          Вернуться
+
+        <div class="book-stage">
+          <button
+            type="button"
+            class="book-nav book-nav--prev"
+            id="prev-btn"
+            aria-label="Предыдущая страница"
+          >
+            ‹
+          </button>
+
+          <div class="book" id="book" aria-label="Книга с нашей историей">
+            <div class="book__spine" aria-hidden="true"></div>
+            <div class="book__pages" id="book-pages"></div>
+          </div>
+
+          <button
+            type="button"
+            class="book-nav book-nav--next"
+            id="next-btn"
+            aria-label="Следующая страница"
+          >
+            ›
+          </button>
+        </div>
+
+        <p class="book-screen__counter" id="page-counter">1 / 1</p>
+
+        <button type="button" class="btn btn--ghost" id="back-btn">
+          Назад к вопросу
         </button>
       </section>
     </main>
